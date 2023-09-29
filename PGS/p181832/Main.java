@@ -12,7 +12,7 @@ public class Main {
 		// direction 0:오른쪽, 1:아래, 2:왼쪽, 3:위
 		while (true) {
 			arr[row][col] = num++;
-			System.out.println("( " + row + " , " + col + " ) = " + arr[row][col]);
+			// System.out.println("( " + row + " , " + col + " ) = " + arr[row][col]);
 			if (num > n * n) {
 				break;
 			}

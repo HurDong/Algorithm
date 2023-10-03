@@ -2,7 +2,7 @@
 ### 1️⃣ 백준
 | Level | Problem Number |
 | :------: | :------ |
-| Bronze | [10250](https://github.com/HurDong/Algorithm/tree/main/백준/Bronze/10250. ACM 호텔) [1259](https://github.com/HurDong/Algorithm/tree/main/백준/Bronze/1259. 팰린드롬수) [2920](https://github.com/HurDong/Algorithm/tree/main/백준/Bronze/2920. 음계) [4153](https://github.com/HurDong/Algorithm/tree/main/백준/Bronze/4153. 직각삼각형)  |
+| Bronze | [10250](https://github.com/HurDong/Algorithm/tree/main/백준/Bronze/10250. ACM 호텔) [1259](https://github.com/HurDong/Algorithm/tree/main/백준/Bronze/1259. 팰린드롬수) [2609](https://github.com/HurDong/Algorithm/tree/main/백준/Bronze/2609. 최대공약수와 최소공배수) [2920](https://github.com/HurDong/Algorithm/tree/main/백준/Bronze/2920. 음계) [4153](https://github.com/HurDong/Algorithm/tree/main/백준/Bronze/4153. 직각삼각형)  |
 | Gold | [7576](https://github.com/HurDong/Algorithm/tree/main/백준/Gold/7576. 토마토)  |
 | Silver | [1003](https://github.com/HurDong/Algorithm/tree/main/백준/Silver/1003. 피보나치 함수) [1012](https://github.com/HurDong/Algorithm/tree/main/백준/Silver/1012. 유기농 배추) [1074](https://github.com/HurDong/Algorithm/tree/main/백준/Silver/1074. Z) [10845](https://github.com/HurDong/Algorithm/tree/main/백준/Silver/10845. 큐) [11723](https://github.com/HurDong/Algorithm/tree/main/백준/Silver/11723. 집합) [14940](https://github.com/HurDong/Algorithm/tree/main/백준/Silver/14940. 쉬운 최단거리) [17219](https://github.com/HurDong/Algorithm/tree/main/백준/Silver/17219. 비밀번호 찾기) [2606](https://github.com/HurDong/Algorithm/tree/main/백준/Silver/2606. 바이러스)  |
 

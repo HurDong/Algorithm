@@ -16,10 +16,8 @@ public class Main {
         int m = Integer.parseInt(st.nextToken());
         int v = Integer.parseInt(st.nextToken());
         Queue<int[]> queue = new LinkedList<>();
-        for(int i=0;i<m;i++)
-        {
+        for (int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
-            queue.
         }
     }
 }

@@ -3,27 +3,30 @@ package b11279;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Comparator;
-import java.util.PriorityQueue;
+import java.util.StringTokenizer;
 
 public class Main {
-    public static void main(String[] args) throws NumberFormatException, IOException {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        int n = Integer.parseInt(br.readLine());
-        PriorityQueue<Integer> queue = new PriorityQueue<>(Comparator.reverseOrder());
-        for (int i = 0; i < n; i++) {
-            int num = Integer.parseInt(br.readLine());
-            if (num == 0) {
-                if (queue.isEmpty()) {
-                    sb.append("0\n");
-                } else {
-                    sb.append(queue.poll() + "\n");
-                }
-            } else {
-                queue.add(num);
-            }
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        long a = Long.parseLong(st.nextToken());
+        long b = Long.parseLong(st.nextToken());
+
+        // gcd(b-a, a) 구하기
+        long gcd = gcd(b - a, a);
+
+        // 결과 출력: gcd(b-a, a) - 1
+        System.out.println(gcd - 1);
+    }
+
+    // 최대공약수(greatest common divisor)를 구하는 함수
+    public static long gcd(long a, long b) {
+        while (b > 0) {
+            long temp = a;
+            a = b;
+            b = temp % b;
         }
-        System.out.println(sb.toString());
+        return a;
     }
 }

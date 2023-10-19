@@ -6,25 +6,22 @@ public class Main {
         int n = sc.nextInt();
         int m = sc.nextInt();
         String s = sc.next();
-        char[] oi = new char[s.length()];
-        for (int i = 0; i < s.length(); i++) {
-            oi[i] = s.charAt(i);
-        }
+        int result = 0;
         int count = 0;
-        for (int i = 0; i < m - 2 * n; i++) {
-            boolean correct = true;
-            for (int j = 0; j < n; j++) {
-                // 2n+1, 2n으로 나눈다
-                // 2n == I 여야하고 2n+1 == O여야한다.
-                if (oi[i + j * 2] != 'I' || oi[i + j * 2 + 1] != 'O') {
-                    correct = false;
-                    break;
-                }
-            }
-            if (correct && oi[i + 2 * n] == 'I') {
+        for (int i = 1; i < m - 1; i++) {
+            // 'IOI'를 찾는다
+            if (s.charAt(i - 1) == 'I' && s.charAt(i) == 'O' && s.charAt(i + 1) == 'I') {
                 count++;
+                // 2n+1의 길이가 될 때까지 찾는다. 같으면 정답에 추가
+                if (count == n) {
+                    count--;
+                    result++;
+                }
+                i++; // i-1 i i+1에 대해서 비교하므로 한번 더 증가를 시켜줘야함.
+            } else {
+                count = 0;
             }
         }
-        System.out.println(count);
+        System.out.println(result);
     }
 }

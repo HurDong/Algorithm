@@ -9,7 +9,8 @@
 ### 2️⃣ 프로그래머스
 | Level | Problem Number |
 | :------: | :------ |
-| 2 | [59408](https://github.com/HurDong/Algorithm/tree/main/프로그래머스/2/59408. 중복 제거하기)  |
+| 1 | [12906](https://github.com/HurDong/Algorithm/tree/main/프로그래머스/1/12906. 같은 숫자는 싫어) [1845](https://github.com/HurDong/Algorithm/tree/main/프로그래머스/1/1845. 폰켓몬) [42576](https://github.com/HurDong/Algorithm/tree/main/프로그래머스/1/42576. 완주하지 못한 선수)  |
+| 2 | [12909](https://github.com/HurDong/Algorithm/tree/main/프로그래머스/2/12909. 올바른 괄호) [1844](https://github.com/HurDong/Algorithm/tree/main/프로그래머스/2/1844. 게임 맵 최단거리) [42577](https://github.com/HurDong/Algorithm/tree/main/프로그래머스/2/42577. 전화번호 목록) [43165](https://github.com/HurDong/Algorithm/tree/main/프로그래머스/2/43165. 타겟 넘버) [59408](https://github.com/HurDong/Algorithm/tree/main/프로그래머스/2/59408. 중복 제거하기)  |
 | 3 | [151139](https://github.com/HurDong/Algorithm/tree/main/프로그래머스/3/151139. 대여 횟수가 많은 자동차들의 월별 대여 횟수 구하기)  |
 | 4 | [131537](https://github.com/HurDong/Algorithm/tree/main/프로그래머스/4/131537. 오프라인／온라인 판매 데이터 통합하기)  |
 | lv2 | [131115](https://github.com/HurDong/Algorithm/tree/main/프로그래머스/lv2/131115. 가격이 제일 비싼 식품의 정보 출력하기)  |

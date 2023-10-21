@@ -16,5 +16,19 @@ public class Main {
 
         Collections.sort(list, Collections.reverseOrder());
         System.out.println(list);
+        Map<Integer, Integer> map = new HashMap<>();
+        Queue<Integer> queue = new LinkedList<>();
+        Set<Integer> set = map.keySet();
+        String s = "asdf";
+        PriorityQueue<Integer> que = new PriorityQueue<>();
+        queue.add(null);
+        switch (s) {
+            case "asdf":
+                break;
+            case "asde":
+                break;
+            default:
+                break;
+        }
     }
 }

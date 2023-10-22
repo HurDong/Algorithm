@@ -17,8 +17,15 @@ public class Main {
         Collections.sort(list, Collections.reverseOrder());
         System.out.println(list);
         Map<Integer, Integer> map = new HashMap<>();
+        map.put(1, 2);
+        map.put(3, 6);
+        map.put(2, 4);
         Queue<Integer> queue = new LinkedList<>();
         Set<Integer> set = map.keySet();
+
+        for (int a : set) {
+            System.out.println(a);
+        }
         String s = "asdf";
         PriorityQueue<Integer> que = new PriorityQueue<>();
         queue.add(null);

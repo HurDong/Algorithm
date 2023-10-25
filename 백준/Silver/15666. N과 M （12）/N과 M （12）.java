@@ -1,20 +1,25 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Main {
     static int N, M;
-    static int[] arr, selected;
+    static int[] arr, ans;
     static StringBuilder sb = new StringBuilder();
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        N = sc.nextInt();
-        M = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
         arr = new int[N];
-        selected = new int[M];
+        ans = new int[M];
 
+        st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
-            arr[i] = sc.nextInt();
+            arr[i] = Integer.parseInt(st.nextToken());
         }
 
         Arrays.sort(arr);
@@ -24,7 +29,7 @@ public class Main {
 
     public static void dfs(int start, int depth) {
         if (depth == M) {
-            for (int num : selected) {
+            for (int num : ans) {
                 sb.append(num).append(" ");
             }
             sb.append("\n");
@@ -34,7 +39,7 @@ public class Main {
         int before = -1;
         for (int i = start; i < N; i++) {
             if (before != arr[i]) {
-                selected[depth] = arr[i];
+                ans[depth] = arr[i];
                 dfs(i, depth + 1);
                 before = arr[i];
             }

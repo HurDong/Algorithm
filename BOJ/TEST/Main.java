@@ -22,7 +22,6 @@ public class Main {
         map.put(2, 4);
         Queue<Integer> queue = new LinkedList<>();
         Set<Integer> set = map.keySet();
-
         for (int a : set) {
             System.out.println(a);
         }

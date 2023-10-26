@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/10026. 적록색약" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/10986. 나머지 합" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1107. 리모컨" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/11729. 하노이 탑 이동 순서" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1722. 순열의 순서" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/2447. 별 찍기 － 10" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/2580. 스도쿠" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/2661. 좋은수열" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/5430. AC" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/7569. 토마토" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/7576. 토마토" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/9663. N－Queen" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

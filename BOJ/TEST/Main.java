@@ -13,7 +13,7 @@ public class Main {
         list.add(1);
         list.add(5);
         list.add(4);
-
+        Integer.compare(x, y)
         Collections.sort(list, Collections.reverseOrder());
         System.out.println(list);
         Map<Integer, Integer> map = new HashMap<>();

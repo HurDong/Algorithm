@@ -13,7 +13,7 @@ public class Main {
         list.add(1);
         list.add(5);
         list.add(4);
-        Integer.compare(x, y)
+        Integer.compare(x, y);
         Collections.sort(list, Collections.reverseOrder());
         System.out.println(list);
         Map<Integer, Integer> map = new HashMap<>();
@@ -26,7 +26,13 @@ public class Main {
             System.out.println(a);
         }
         String s = "asdf";
+        String[] sa = new String[2];
+        int n = sa.length;
         PriorityQueue<Integer> que = new PriorityQueue<>();
+        que.add(2);
+        que.add(1);
+        que.add(3);
+        System.out.println(que);
         queue.add(null);
         switch (s) {
             case "asdf":

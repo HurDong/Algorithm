@@ -13,7 +13,7 @@
     ```java
     double sum = (double) a / b;
     ```
-2. 소수점 n번째 자리에서 반올림하여 출력
+2. 소수점 3번째 자리에서 반올림하여 출력
     ```java
     System.out.printf("%.2f\n", sum);
     ```

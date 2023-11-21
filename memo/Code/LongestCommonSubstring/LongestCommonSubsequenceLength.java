@@ -1,4 +1,4 @@
-package Code.LongestCommonSubstring;
+package memo.Code.LongestCommonSubstring;
 
 public class LongestCommonSubsequenceLength {
 

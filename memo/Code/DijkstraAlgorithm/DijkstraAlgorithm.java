@@ -1,4 +1,4 @@
-package Code.DijkstraAlgorithm;
+package memo.Code.DijkstraAlgorithm;
 
 import java.util.Arrays;
 import java.util.PriorityQueue;

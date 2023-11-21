@@ -83,6 +83,8 @@ public class LongestCommonSubsequenceWithOneChange {
 
 ## 코드
 
+[다익스트라 알고리즘](memo/Code/DijkstraAlgorithm/DijkstraAlgorithm.java)
+
 ```java
 import java.util.Arrays;
 import java.util.PriorityQueue;

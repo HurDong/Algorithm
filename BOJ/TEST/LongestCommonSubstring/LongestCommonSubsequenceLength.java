@@ -4,7 +4,6 @@ public class LongestCommonSubsequenceLength {
         int aLength = a.length();
         int bLength = b.length();
         int[][] dp = new int[aLength + 1][bLength + 1];
-
         // LCS 길이 계산
         for (int i = 1; i <= aLength; i++) {
             for (int j = 1; j <= bLength; j++) {
@@ -15,7 +14,6 @@ public class LongestCommonSubsequenceLength {
                 }
             }
         }
-
         return dp[aLength][bLength];
     }
 

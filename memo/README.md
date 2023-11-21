@@ -1,22 +1,25 @@
 # 크루스칼 알고리즘
+
 1. 간선을 연결비용에 따라 오름차순 정렬
-    ```java
-    Arrays.sort(costs, (a, b) -> Integer.compare(a[2], b[2]));
-    ```
+   ```java
+   Arrays.sort(costs, (a, b) -> Integer.compare(a[2], b[2]));
+   ```
 2. 순차적으로 순회하며 사이클이 없는 경우 간선의 양 끝점을 Union
 3. Parent는 항상 작은 노드 번호를 따름
 4. 최상위 Parent를 찾아 해당 노드를 Parent로 설정
 5. 모든 간선에 대해 작업을 수행하고 최소 신장 트리 완성 후 최소 비용 반환
 
 # 소수 n번째 자리 표현
+
 1. 두 int를 나누어 double 값으로 변환
-    ```java
-    double sum = (double) a / b;
-    ```
+   ```java
+   double sum = (double) a / b;
+   ```
 2. 소수점 3번째 자리에서 반올림하여 출력
-    ```java
-    System.out.printf("%.2f\n", sum);
-    ```
+   ```java
+   System.out.printf("%.2f\n", sum);
+   ```
+
 # 가장 긴 공통 부분 수열 (한 문자 변경 가능)
 
 ## 문제 설명
@@ -62,8 +65,93 @@ public class LongestCommonSubsequenceWithOneChange {
     }
 }
 ```
+
 ## 코드 설명
+
 - 이 코드는 동적 프로그래밍을 사용하여 두 문자열 a와 b 사이의 가장 긴 공통 부분 수열의 길이를 계산
 - dp[i][j][k] 배열은 문자열 a의 첫 i개 문자와 문자열 b의 첫 j개 문자 사이의 LCS의 길이를 나타내며, k는 문자열 a에서 변경할 수 있는 문자의 수를 나타냄.
 - k가 0이면 변경 없이 계산된 LCS의 길이를, 1이면 한 문자 변경을 고려한 LCS의 길이를 나타냄.
 - 최종 결과는 dp[aLength][bLength][0]과 dp[aLength][bLength][1] 중 더 큰 값!
+
+# 다익스트라 알고리즘
+
+## 알고리즘 설명
+
+- 가중치가 있는 그래프에서 한 정점에서 다른 모든 정점까지의 최단 경로를 찾는 알고리즘.
+- 우선순위 큐를 사용하여 현재까지 발견된 가장 짧은 경로를 가진 정점을 빠르게 찾음.
+- 각 정점까지의 최단 거리를 저장하는 배열과 해당 정점을 방문했는지 확인하는 배열을 사용.
+
+## 코드
+
+```java
+import java.util.Arrays;
+import java.util.PriorityQueue;
+
+public class DijkstraAlgorithm {
+    static final int INF = Integer.MAX_VALUE;
+
+    static class Node implements Comparable<Node> {
+        int vertex, weight;
+
+        Node(int vertex, int weight) {
+            this.vertex = vertex;
+            this.weight = weight;
+        }
+
+        @Override
+        public int compareTo(Node other) {
+            return this.weight - other.weight;
+        }
+    }
+
+    public static void main(String[] args) {
+        int V = 5; // 정점의 개수
+        int[][] graph = new int[][]{
+            {0, 10, 0, 0, 5},
+            {0, 0, 1, 0, 2},
+            {0, 0, 0, 4, 0},
+            {7, 0, 6, 0, 0},
+            {0, 3, 9, 2, 0}
+        };
+
+        int[] dist = dijkstra(V, graph, 0); // 0번 정점에서 시작
+
+        System.out.println("최단 거리: " + Arrays.toString(dist));
+    }
+
+    static int[] dijkstra(int V, int[][] graph, int start) {
+        int[] dist = new int[V];
+        boolean[] visited = new boolean[V];
+
+        Arrays.fill(dist, INF);
+        dist[start] = 0;
+
+        PriorityQueue<Node> pq = new PriorityQueue<>();
+        pq.offer(new Node(start, 0));
+
+        while (!pq.isEmpty()) {
+            Node current = pq.poll();
+            int currentVertex = current.vertex;
+
+            if (visited[currentVertex]) continue;
+            visited[currentVertex] = true;
+
+            for (int i = 0; i < V; i++) {
+                if (!visited[i] && graph[currentVertex][i] != 0 && dist[i] > dist[currentVertex] + graph[currentVertex][i]) {
+                    dist[i] = dist[currentVertex] + graph[currentVertex][i];
+                    pq.offer(new Node(i, dist[i]));
+                }
+            }
+        }
+
+        return dist;
+    }
+}
+```
+
+## 코드 설명
+
+- `Node` 클래스는 각 정점과 그 정점까지의 거리를 저장하고, `PriorityQueue`는 현재까지 발견된 가장 짧은 경로를 가진 정점을 빠르게 찾기 위해 사용.
+- `dijkstra` 메서드는 주어진 그래프에서 한 정점에서 다른 모든 정점까지의 최단 거리를 계산.
+- `dist` 배열은 각 정점까지의 최단 거리를 저장하고, visited 배열은 해당 정점을 방문했는지 확인.
+- `PriorityQueue`를 사용하여 현재까지 발견된 가장 짧은 경로를 가진 정점을 빠르게 찾고, 최단 거리 배열을 반환.

@@ -1,8 +1,8 @@
-package TEST;
+package Code;
 
 import java.util.*;
 
-public class Main {
+public class Test {
     public static void main(String[] args) {
         int[][] maps = new int[10][10];
         int x = maps.length;

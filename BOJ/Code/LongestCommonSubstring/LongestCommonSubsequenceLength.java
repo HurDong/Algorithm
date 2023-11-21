@@ -1,3 +1,5 @@
+package Code.LongestCommonSubstring;
+
 public class LongestCommonSubsequenceLength {
 
     public static int findLongestCommonSubsequenceLength(String a, String b) {

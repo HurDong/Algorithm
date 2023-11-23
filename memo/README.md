@@ -27,7 +27,9 @@
 - 두 문자열 `a`와 `b`가 주어졌을 때, `a`의 임의의 문자 하나를 다른 문자로 변경할 수 있는 조건 하에 두 문자열 간의 가장 긴 공통 부분 수열(Longest Common Subsequence, LCS)의 길이를 찾는 문제
 
 ## 코드
+
 [코드 보러가기](https://github.com/HurDong/Algorithm/blob/main/memo/Code/LongestCommonSubstring/LongestCommonSubsequenceLength.java)
+
 ```java
 public class LongestCommonSubsequenceWithOneChange {
 

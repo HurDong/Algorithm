@@ -43,28 +43,33 @@ public class Main {
          */
         for (int i = 1; i <= n; i++) {
             solve(i);
+            /* System.out.println(answer); */
         }
         System.out.println(answer);
     }
 
     private static void solve(int startNode) {
         boolean[] visited = new boolean[n + 1];
-        dfs(startNode, startNode, visited, m);
+        boolean[] resulted = new boolean[n + 1];
+        dfs(startNode, startNode, visited, resulted, m);
     }
 
-    private static void dfs(int startNode, int curNode, boolean[] visited, int curWeight) {
+    private static void dfs(int startNode, int curNode, boolean[] visited, boolean[] resulted, int curWeight) {
+        // 1에서 2를 갈때보다 1에서 3을 거쳐 2를 갈때 더 짧은 길이면 더 다양한 루트로 갈 수 있다. -> resulted 배열을 만들어 해당
+        // node의 items가 추가 되었으면 추가하지 않는다.
         visited[curNode] = true;
-        results[startNode] += items[curNode];
-        if (answer < results[startNode]) {
-            answer = results[startNode];
+        if (!resulted[curNode]) {
+            results[startNode] += items[curNode];
+            resulted[curNode] = true;
         }
         for (int i = 0; i < ground.get(curNode).size(); i++) {
             int nextVertex = ground.get(curNode).get(i).vertex;
             int nextWeight = ground.get(curNode).get(i).weight;
             if (!visited[nextVertex] && nextWeight <= curWeight) {
-                dfs(startNode, nextVertex, visited, curWeight - nextWeight);
+                dfs(startNode, nextVertex, visited, resulted, curWeight - nextWeight);
             }
         }
+        answer = Math.max(answer, results[startNode]);
         visited[curNode] = false;
     }
 
@@ -79,3 +84,14 @@ public class Main {
 
     }
 }
+
+/*
+ * 6 5 6
+ * 1 2 3 4 5 6
+ * 1 2 1
+ * 2 3 1
+ * 3 4 1
+ * 4 5 1
+ * 1 5 5
+ * 5 6 1
+ */

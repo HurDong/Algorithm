@@ -30,6 +30,7 @@
 
 [코드 보러가기](https://github.com/HurDong/Algorithm/blob/main/memo/Code/LongestCommonSubstring/LongestCommonSubsequenceLength.java)
 
+
 ```java
 public class LongestCommonSubsequenceWithOneChange {
 
@@ -179,6 +180,9 @@ public class DijkstraAlgorithm {
 - `Find` 연산은 요소의 최상위 부모(루트 노드)를 찾음
 - `Union` 연산은 두 요소의 최상위 부모를 찾고, 한쪽의 부모를 다른 쪽의 부모로 설정
 
+# 코드
+[코드 보러가기](https://github.com/HurDong/Algorithm/blob/main/memo/Code/UnionAndFindAlgorithm/UnionAndFindAlgorithm.java)
+
 ```java
 public class UnionFind {
 
@@ -222,7 +226,7 @@ public class UnionFind {
 
 ## 코드 설명
 
-- `UnionFind` 클래스는 집합의 크기를 인자로 받아 각 요소의 부모를 자기 자신으로 초기화합니다.
-- `find` 메서드는 주어진 요소의 루트 노드를 찾습니다. 루트 노드를 찾는 과정에서 경로 압축(`Path Compression`)을 사용하여 효율성을 높입니다.
-- `union` 메서드는 두 요소를 하나의 집합으로 합칩니다. 이 때, 한 요소의 루트 노드를 다른 요소의 루트 노드의 자식으로 만듭니다.
-- `main` 메서드에서는 예시로 몇 개의 요소를 합치고, 두 요소가 같은 집합에 있는지 확인합니다.
+- `UnionFind` 클래스는 집합의 크기를 인자로 받아 각 요소의 부모를 자기 자신으로 초기화
+- `find` 메서드는 주어진 요소의 루트 노드를 찾습니다. 루트 노드를 찾는 과정에서 경로 압축(`Path Compression`)을 사용하여 효율성을 높임.
+- `union` 메서드는 두 요소를 하나의 집합으로 합칩니다. 이 때, 한 요소의 루트 노드를 다른 요소의 루트 노드의 자식으로 만듦.
+- `main` 메서드에서는 예시로 몇 개의 요소를 합치고, 두 요소가 같은 집합에 있는지 확인

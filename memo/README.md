@@ -159,3 +159,70 @@ public class DijkstraAlgorithm {
 - `dijkstra` 메서드는 주어진 그래프에서 한 정점에서 다른 모든 정점까지의 최단 거리를 계산.
 - `dist` 배열은 각 정점까지의 최단 거리를 저장하고, visited 배열은 해당 정점을 방문했는지 확인.
 - `PriorityQueue`를 사용하여 현재까지 발견된 가장 짧은 경로를 가진 정점을 빠르게 찾고, 최단 거리 배열을 반환.
+
+# Union Find (유니온 파인드) 알고리즘
+
+## 알고리즘 설명
+
+- 유니온 파인드(`Union Find`)는 그래프의 연결 요소를 효율적으로 찾거나, 두 요소가 같은 그룹에 속하는지 판단하는 알고리즘.
+- 주로 노드 간의 연결 상태를 관리하는 데 사용되며, '합집합 찾기' 알고리즘으로도 알려짐.
+
+## 핵심 개념
+
+1. **Union**: 두 집합을 하나로 합치는 연산
+2. **Find**: 어떤 요소가 어느 집합에 포함되어 있는지 찾는 연산
+
+## 구현 방법
+
+- 각 요소의 부모 요소를 기록하는 배열을 사용
+- 초기에는 각 요소의 부모 요소를 자기 자신으로 설정
+- `Find` 연산은 요소의 최상위 부모(루트 노드)를 찾음
+- `Union` 연산은 두 요소의 최상위 부모를 찾고, 한쪽의 부모를 다른 쪽의 부모로 설정
+
+```java
+public class UnionFind {
+
+    private int[] parent;
+
+    public UnionFind(int size) {
+        parent = new int[size];
+        for (int i = 0; i < size; i++) {
+            parent[i] = i;
+        }
+    }
+
+    public int find(int x) {
+        if (x == parent[x]) {
+            return x;
+        }
+        return parent[x] = find(parent[x]);
+    }
+
+    public void union(int x, int y) {
+        int xRoot = find(x);
+        int yRoot = find(y);
+
+        if (xRoot != yRoot) {
+            parent[yRoot] = xRoot;
+        }
+    }
+
+    public static void main(String[] args) {
+        UnionFind uf = new UnionFind(10);
+
+        uf.union(1, 2);
+        uf.union(2, 3);
+        uf.union(4, 5);
+
+        System.out.println("1과 3이 연결되어 있나요? " + (uf.find(1) == uf.find(3)));
+        System.out.println("4와 5가 연결되어 있나요? " + (uf.find(4) == uf.find(5)));
+    }
+}
+```
+
+## 코드 설명
+
+- `UnionFind` 클래스는 집합의 크기를 인자로 받아 각 요소의 부모를 자기 자신으로 초기화합니다.
+- `find` 메서드는 주어진 요소의 루트 노드를 찾습니다. 루트 노드를 찾는 과정에서 경로 압축(`Path Compression`)을 사용하여 효율성을 높입니다.
+- `union` 메서드는 두 요소를 하나의 집합으로 합칩니다. 이 때, 한 요소의 루트 노드를 다른 요소의 루트 노드의 자식으로 만듭니다.
+- `main` 메서드에서는 예시로 몇 개의 요소를 합치고, 두 요소가 같은 집합에 있는지 확인합니다.

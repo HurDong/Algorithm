@@ -17,30 +17,6 @@ public class Main {
 				break;
 			}
 			switch (direction) {
-			case 0:
-				nextRow = row;
-				nextCol = col + 1;
-				break;
-			case 1:
-				nextRow = row + 1;
-				nextCol = col;
-				break;
-			case 2:
-				nextRow = row;
-				nextCol = col - 1;
-				break;
-			case 3:
-				nextRow = row - 1;
-				nextCol = col;
-				break;
-			}
-			if (nextRow >= 0 && nextRow < n && nextCol >= 0 && nextCol < n && arr[nextRow][nextCol] == 0) {
-				row = nextRow;
-				col = nextCol;
-			} else {
-				direction = (direction + 1) % 4;
-				// direction이 변경된 후에 다시 nextRow와 nextCol을 계산
-				switch (direction) {
 				case 0:
 					nextRow = row;
 					nextCol = col + 1;
@@ -57,6 +33,30 @@ public class Main {
 					nextRow = row - 1;
 					nextCol = col;
 					break;
+			}
+			if (nextRow >= 0 && nextRow < n && nextCol >= 0 && nextCol < n && arr[nextRow][nextCol] == 0) {
+				row = nextRow;
+				col = nextCol;
+			} else {
+				direction = (direction + 1) % 4;
+				// direction이 변경된 후에 다시 nextRow와 nextCol을 계산
+				switch (direction) {
+					case 0:
+						nextRow = row;
+						nextCol = col + 1;
+						break;
+					case 1:
+						nextRow = row + 1;
+						nextCol = col;
+						break;
+					case 2:
+						nextRow = row;
+						nextCol = col - 1;
+						break;
+					case 3:
+						nextRow = row - 1;
+						nextCol = col;
+						break;
 				}
 				// 다시 검사 후에 row와 col 업데이트
 				if (nextRow >= 0 && nextRow < n && nextCol >= 0 && nextCol < n && arr[nextRow][nextCol] == 0) {

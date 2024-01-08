@@ -1,4 +1,4 @@
-package SWEA.s1959;
+package SW.s1959;
 
 import java.io.IOException;
 import java.util.Scanner;

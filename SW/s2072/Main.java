@@ -1,4 +1,4 @@
-package SWEA.s2072;
+package SW.s2072;
 
 import java.util.Scanner;
 

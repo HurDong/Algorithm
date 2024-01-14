@@ -30,7 +30,6 @@
 
 [코드 보러가기](https://github.com/HurDong/Algorithm/blob/main/memo/Code/LongestCommonSubstring/LongestCommonSubsequenceLength.java)
 
-
 ```java
 public class LongestCommonSubsequenceWithOneChange {
 
@@ -180,7 +179,8 @@ public class DijkstraAlgorithm {
 - `Find` 연산은 요소의 최상위 부모(루트 노드)를 찾음
 - `Union` 연산은 두 요소의 최상위 부모를 찾고, 한쪽의 부모를 다른 쪽의 부모로 설정
 
-# 코드
+## 코드
+
 [코드 보러가기](https://github.com/HurDong/Algorithm/blob/main/memo/Code/UnionAndFindAlgorithm/UnionAndFindAlgorithm.java)
 
 ```java

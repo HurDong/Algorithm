@@ -34,7 +34,8 @@ public class Main {
 			int a = Integer.parseInt(st.nextToken());
 			int b = Integer.parseInt(st.nextToken());
 			int c = Integer.parseInt(st.nextToken());
-
+			
+			// 비트마스킹을 이용해 이진수로 items에 데이터 나누어서 저장
 			for (int k = 1; c > 0; k *= 2) {
 				int num = Math.min(k, c);
 				c -= num;
@@ -45,17 +46,13 @@ public class Main {
 		// dp[i][j] : i번째 물건까지 사용했을 때 j 무게일 때의 최대 만족도
 		int[][] dp = new int[items.size()][m + 1];
 
-		int answer = 0;
-
 		// items[0] : 무게 / items[1] : 만족도
 		for (int i = 0; i < m + 1; i++) {
 			if (items.get(0)[0] <= i) {
 				dp[0][i] = items.get(0)[1];
 			}
-			if (i <= m) {
-				answer = Math.max(answer, i);
-			}
 		}
+		
 		// 여기까지는 잘 들어감
 
 		for (int i = 1; i < items.size(); i++) {
@@ -66,10 +63,6 @@ public class Main {
 				} else {
 					dp[i][j] = dp[i - 1][j];
 				}
-//				if (j <= m) {
-//					// 최대 만족도로
-//					answer = Math.max(answer, dp[i][j]);
-//				}
 			}
 		}
 		System.out.println(dp[items.size() - 1][m]);

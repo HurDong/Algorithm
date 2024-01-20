@@ -15,7 +15,8 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 
 		n = sc.nextInt();
-		int[][] board = new int[n + 2][n + 2]; // 0과 n은 벽으로 표현 -> 0
+		// 벽 : 0 (만나면 종료) / 길 : 1 / 사과 : 2(먹으면 꼬리가 그자리 + 2->1로 변경)
+		int[][] board = new int[n + 2][n + 2];
 		for (int i = 1; i <= n; i++) {
 			for (int j = 1; j <= n; j++) {
 				board[i][j] = 1;
@@ -45,11 +46,14 @@ public class Main {
 
 				int x = cur[0] + dx[snake[2]];
 				int y = cur[1] + dy[snake[2]];
-				if (meetBody(x, y) || board[x][y] == 0) {
+
+				if (meetBody(x, y) || isWall(x, y)) {
 					System.out.println(answer);
 					return;
 				}
+
 				queue.addFirst(new int[] { x, y });
+
 				// 사과를 먹으면 머리만 늘리고 1로 바꾼다.
 				if (board[x][y] == 2) {
 					board[x][y] = 1;
@@ -57,7 +61,6 @@ public class Main {
 				} else {
 					queue.removeLast();
 				}
-//				print(board, new int[] { x, y });
 			}
 			if (snake[2] == 0) {
 				if (d == 'L')
@@ -81,10 +84,39 @@ public class Main {
 					snake[2] = 1;
 			}
 		}
-		while(meetBody(x,y)||
+		// 방향 지시 끝나면 마지막 방향으로 쭈우욱 간다.
+		int[] cur = queue.peekFirst();
+
+		int x = cur[0];
+		int y = cur[1];
+
+		while (true) {
+			answer++;
+			x += dx[snake[2]];
+			y += dy[snake[2]];
+			if (isWall(x, y) || meetBody(x, y)) {
+				break;
+			}
+
+			queue.addFirst(new int[] { x, y });
+
+			if (board[x][y] == 2) {
+				board[x][y] = 1;
+			} else {
+				queue.removeLast();
+			}
+		}
 		System.out.println(answer);
 	}
 
+	private static boolean isWall(int x, int y) {
+		if (x <= 0 || x > n || y <= 0 || y > n) {
+			return true;
+		}
+		return false;
+	}
+
+	// 몸통 만나면 true -> 게임 종료
 	private static boolean meetBody(int x, int y) {
 		for (int[] arr : queue) {
 			if (x == arr[0] && y == arr[1]) {
@@ -97,10 +129,10 @@ public class Main {
 	static void print(int[][] board, int[] cur) {
 		for (int i = 0; i <= n + 1; i++) {
 			for (int j = 0; j <= n + 1; j++) {
-				if (cur[0] == i && cur[1] == j) {
-					System.out.print("3 ");
-				} else
-					System.out.print(board[i][j] + " ");
+				// if (cur[0] == i && cur[1] == j) {
+				// System.out.print("3 ");
+				// } else
+				System.out.print(board[i][j] + " ");
 			}
 			System.out.println();
 		}

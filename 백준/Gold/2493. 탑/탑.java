@@ -23,12 +23,10 @@ public class Main {
 		int[] answer = new int[n];
 
 		for (int i = 0; i < n; i++) {
-//			System.out.println(towers);
-
 			// 비교값
 			int tower = Integer.parseInt(st.nextToken());
 
-			// 스택이 비어 있으면 0을 저장
+			// 이 때 스택이 비었을 경우는 첫번째 인덱스
 			if (towers.isEmpty()) {
 				answer[i] = 0;
 				towers.push(tower);
@@ -48,12 +46,15 @@ public class Main {
 						idxStack.pop();
 					}
 				}
+				// break문으로 나왔을 경우
 				if (!towers.isEmpty()) {
-					answer[i] = idxStack.peek();
-					towers.push(tower);
+					answer[i] = idxStack.peek(); // stack의 head를 정답 인덱스로 갖는다.
+					towers.push(tower); // 그리고 stack에 추가
 					idxStack.push(i + 1);
-				} else {
-					answer[i] = 0;
+				}
+				// stack에서 해당 수가 가장 클 경우
+				else {
+					answer[i] = 0; // 답이 없으므로 0으로 정답 인덱스 설정
 					towers.push(tower);
 					idxStack.push(i + 1);
 				}
@@ -63,6 +64,7 @@ public class Main {
 		for (int tower : answer) {
 			sb.append(tower + " ");
 		}
+
 		System.out.println(sb.toString());
 	}
 }

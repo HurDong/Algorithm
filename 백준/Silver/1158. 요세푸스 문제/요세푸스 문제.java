@@ -1,6 +1,4 @@
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,7 +6,7 @@ public class Main {
         int N = sc.nextInt();
         int K = sc.nextInt();
 
-        Queue<Integer> queue = new LinkedList<>();
+        Queue<Integer> queue = new ArrayDeque<>();
         for (int i = 1; i <= N; i++) {
             queue.add(i);
         }

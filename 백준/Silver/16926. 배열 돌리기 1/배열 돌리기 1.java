@@ -26,28 +26,27 @@ public class Main {
 				board[i][j] = Integer.parseInt(st.nextToken());
 			}
 		}
-
 		rotate(0);
-
-		StringBuilder sb = new StringBuilder();
-
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < m; j++) {
-				sb.append(board[i][j] + " ");
-			}
-			sb.append("\n");
-		}
-
-		System.out.println(sb.toString());
 	}
 
 	private static void rotate(int count) {
 		if (count == r) {
-			return;
+			StringBuilder sb = new StringBuilder();
+
+			for (int i = 0; i < n; i++) {
+				for (int j = 0; j < m; j++) {
+					sb.append(board[i][j] + " ");
+				}
+				sb.append("\n");
+			}
+
+			System.out.println(sb.toString());
+			System.exit(0);
 		}
 
 		int[][] prev = new int[n][m];
 
+		// prev[][]에 board[][]를 저장
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
 				prev[i][j] = board[i][j];
@@ -68,11 +67,8 @@ public class Main {
 
 			int dir = 0; // 초기 dir은 아래
 
-			boolean isLoop = true; // 1*2 or 2*1의 경우 무한 루프
-
+			// min(n,m) mod 2 = 0 이므로 1*2 or 2*1이 남는다고 가정하지 않는다.
 			while (isRange(x + dx[dir], y + dy[dir]) && !visited[x + dx[dir]][y + dy[dir]]) {
-				isLoop = false;
-
 				x += dx[dir];
 
 				y += dy[dir];
@@ -81,6 +77,7 @@ public class Main {
 
 				board[x][y] = prev[x - dx[dir]][y - dy[dir]];
 
+				// 경계 혹은 이미 방문했던 board[][]에 도달하면 방향 전환을 통해 회전 진행
 				if (!(isRange(x + dx[dir], y + dy[dir]) && !visited[x + dx[dir]][y + dy[dir]])) {
 					if (dir == 3) {
 						break;
@@ -89,11 +86,6 @@ public class Main {
 					}
 				}
 			}
-//			if (isLoop) {
-//				if (n > m) {
-//
-//				}
-//			}
 		}
 		rotate(count + 1);
 	}

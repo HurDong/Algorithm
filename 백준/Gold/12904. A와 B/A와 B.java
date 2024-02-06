@@ -1,46 +1,49 @@
 import java.util.Scanner;
 
 public class Main {
-	static boolean isAnswer = false;
-	static String t, rt;
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
+
 		String s = sc.next();
+
 		String rs = "";
-		t = sc.next();
-		rt = "";
-		for (int i = s.length() - 1; i >= 0; i--) {
-			rs += s.charAt(i);
-		}
-		for (int i = t.length() - 1; i >= 0; i--) {
-			rt += t.charAt(i);
-		}
+
+		String t = sc.next();
+
 		int n = s.length();
+
 		int m = t.length();
 
 		int p1 = 0;
+
 		int p2 = t.length() - 1;
-		boolean c = true;
+
+		boolean c = true; // true : 오른쪽에서 왼쪽 , false : 왼쪽에서 오른쪽
 
 		for (int i = 0; i < m - n; i++) {
 			if (c) {
 				if (t.charAt(p2) == 'B')
-					c = false;
+					c = false; // B면 뒤집기
 				p2--;
 			} else {
 				if (t.charAt(p1) == 'B')
-					c = true;
+					c = true; // B면 뒤집기
 				p1++;
 			}
 		}
-		for (int i = 0; i < n; i++) {
-			if (c) {
+		// 정방향 : p1 -> p2
+		if (c) {
+			for (int i = 0; i < n; i++) {
 				if (s.charAt(i) != t.charAt(p1 + i)) {
 					System.out.println(0);
 					return;
 				}
-			} else {
+			}
+		}
+		// 역방향 : p1 <- p2
+		else {
+			for (int i = 0; i < n; i++) {
 				if (s.charAt(i) != t.charAt(p2 - i)) {
 					System.out.println(0);
 					return;
@@ -48,16 +51,5 @@ public class Main {
 			}
 		}
 		System.out.println(1);
-		/*
-		 * // reverse 를 하는 것보다는 앞에 B를 붙히고 boolean 변수를 false 로 만드는 작업이 더 효율적이라 판단 dfs(s,
-		 * false); dfs(rs, true); System.out.println(0); }
-		 * 
-		 * private static void dfs(String sub, boolean rev) { if (sub.length() ==
-		 * t.length()) { if (rev && sub.equals(t)) { System.out.println(1);
-		 * System.exit(0); } else if (!rev && sub.equals(rt)) { System.out.println(1);
-		 * System.exit(0); } return; }
-		 * 
-		 * dfs(sub + "A", true); }
-		 */
 	}
 }

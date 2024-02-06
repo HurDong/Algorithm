@@ -34,9 +34,7 @@ public class Main {
 			int end = Integer.parseInt(st.nextToken());
 
 			int weight = Integer.parseInt(st.nextToken());
-			if((end-start)< {
-				
-			}
+			
 			graph.get(start).add(new Street(end, weight));
 		}
 
@@ -44,7 +42,7 @@ public class Main {
 	}
 
 	private static void dijkstra() {
-		
+
 	}
 
 	public static class Street implements Comparable<Street> {

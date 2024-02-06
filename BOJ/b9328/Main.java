@@ -36,7 +36,7 @@ public class Main {
             String keys = br.readLine();
 
             if (!keys.equals("0")) {
-
+            	
             }
 
             sb.append(count + "\n");

@@ -41,11 +41,13 @@ public class Main {
 				}
 			}
 
+			// 테두리는 .으로
 			for (int i = 0; i <= h + 1; i++) {
 				board[i][0] = '.';
 				board[i][w + 1] = '.';
 			}
 
+			// 테두리는 .으로
 			for (int i = 0; i <= w + 1; i++) {
 				board[0][i] = '.';
 				board[h + 1][i] = '.';
@@ -55,18 +57,12 @@ public class Main {
 
 			keys = new ArrayList<>();
 
+			// 0 입력이 아닐 경우에만 keys에 key들 넣기.
 			if (!s.equals("0")) {
 				for (int i = 0; i < s.length(); i++) {
 					keys.add(s.charAt(i));
 				}
 			}
-
-//			for (int i = 0; i <= h + 1; i++) {
-//				for (int j = 0; j <= w + 1; j++) {
-//					System.out.print(board[i][j] + " ");
-//				}
-//				System.out.println();
-//			}
 
 			answer = keyGame(0, 0);
 
@@ -90,7 +86,7 @@ public class Main {
 		// 먼저 가지고 있는 열쇠를 다 사용하여 갈 수 있는 경로를 최신화한다.
 		while (!queue.isEmpty()) {
 			int[] cur = queue.poll();
-//			System.out.println(cur[0] + " " + cur[1]);
+
 			for (int i = 0; i < 4; i++) {
 				int nx = cur[0] + dx[i];
 
@@ -113,14 +109,15 @@ public class Main {
 					// 열쇠를 획득할 경우 이동 후 열쇠 배열에 추가 및 visited 초기화
 					else if (board[nx][ny] >= 'a' && board[nx][ny] <= 'z') {
 						queue.add(new int[] { nx, ny });
-						visited = new boolean[h + 2][w + 2];
+						visited = new boolean[h + 2][w + 2]; // 새로운 열쇠를 먹었으므로 visited를 초기화
 						visited[nx][ny] = true;
-						keys.add(board[nx][ny]);
+						keys.add(board[nx][ny]); // keys에 먹은 key 넣기.
 						board[nx][ny] = '.';
 					}
 					// 문을 만났을 경우 키가 있는지 확인 후 이동
 					else if (board[nx][ny] >= 'A' && board[nx][ny] <= 'Z') {
 						for (char key : keys) {
+							// 열쇠는 여러번 사용 가능하므로 remove 하지 않는다.
 							if ((key - 'a') + 'A' == board[nx][ny]) {
 								queue.add(new int[] { nx, ny });
 								visited[nx][ny] = true;

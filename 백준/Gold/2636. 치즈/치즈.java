@@ -3,19 +3,21 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
-	static int n, m;
-	static int[][] board;
-	static boolean[][] visited;
-	static int[] dx = { -1, 1, 0, 0 };
-	static int[] dy = { 0, 0, -1, 1 };
-	static ArrayList<int[]> outAir;
 	static ArrayList<int[]> outCheeze;
-	static int size, temp;
+
+	static int[] dx = { -1, 1, 0, 0 };
+
+	static int[] dy = { 0, 0, -1, 1 };
+
+	static int n, m, size, temp;
+
+	static boolean[][] visited;
+
+	static int[][] board;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -29,33 +31,35 @@ public class Main {
 		// 테두리 생각하여 +2
 		board = new int[n + 2][m + 2];
 
-		// 테두리를 -1로 설정
-		for (int i = 0; i <= n + 1; i++) {
-			Arrays.fill(board[i], -1);
-		}
-
 		for (int i = 1; i <= n; i++) {
 			st = new StringTokenizer(br.readLine());
 			for (int j = 1; j <= m; j++) {
 				board[i][j] = Integer.parseInt(st.nextToken());
 			}
 		}
-		int count = 0;
+
+		// 시간
+		int time = 0;
+
 		while (!noCheeze()) {
 			size = 0;
+
 			visited = new boolean[n + 2][m + 2];
+
 			outCheeze = new ArrayList<>();
-			count++;
+			time++;
+
 			for (int i = 0; i <= n + 1; i++) {
 				bfsAir(i, 0);
 				bfsAir(0, i);
 			}
+
 			// outCheese에서 하나씩 꺼내어 0으로 초기화
 			for (int[] cheeze : outCheeze) {
 				board[cheeze[0]][cheeze[1]] = 0;
 			}
 		}
-		System.out.println(count + "\n" + size);
+		System.out.println(time + "\n" + size);
 	}
 
 	// 더이상 치즈가 있는 지 없는 지 확인하는 메서드
@@ -72,7 +76,9 @@ public class Main {
 		// cheeze가 없으면 size는 이전 temp
 		if (noCheeze) {
 			size = temp;
-		} else {
+		}
+		// cheeze가 있으면 temp를 size로 최신화
+		else {
 			temp = size;
 		}
 		return noCheeze;
@@ -80,18 +86,25 @@ public class Main {
 
 	private static void bfsAir(int x, int y) {
 		Queue<int[]> queue = new ArrayDeque<>();
+
 		queue.add(new int[] { x, y });
+
 		while (!queue.isEmpty()) {
 			int[] cur = queue.poll();
+
 			for (int i = 0; i < 4; i++) {
 				int nx = cur[0] + dx[i];
+
 				int ny = cur[1] + dy[i];
+
 				if (isRange(nx, ny) && !visited[nx][ny]) {
+					// 테두리에서 갈 수 있는 치즈일 경우 경계이므로 삭제 실시
 					if (board[nx][ny] == 1) {
-						board[nx][ny] = 2;
 						visited[nx][ny] = true;
 						outCheeze.add(new int[] { nx, ny });
-					} else if (board[nx][ny] == 0) {
+					}
+					// 구멍을 만날 경우 queue에 넣고 bfs 진행
+					else if (board[nx][ny] == 0) {
 						queue.add(new int[] { nx, ny });
 						visited[nx][ny] = true;
 					}

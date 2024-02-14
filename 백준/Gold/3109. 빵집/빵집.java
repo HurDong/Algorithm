@@ -42,7 +42,7 @@ public class Main {
 			}
 		}
 		for (int i = 0; i < r; i++) {
-			find = false;
+			find = false; // 재귀 바로 종료 조건 초기화
 			breadGame(i, 0);
 		}
 		System.out.println(answer);
@@ -51,11 +51,14 @@ public class Main {
 	// 먼저 (0,0)에서 시작해서 (r-1,0) 끝이므로 최대한 오른쪽 위를 지향하도록
 	private static void breadGame(int x, int y) {
 		if (y == c - 1) {
+			// 상우 우 하우 순으로 가므로 찾게 된다면 가장 오른쪽 위이므로
+			// true로 만들고 재귀를 더이상 진행하지 않도록 해야함
 			find = true;
 			answer++;
 			return;
 		}
 		for (int i = 0; i < 3; i++) {
+			// 도착하지 못했을 경우만 재귀
 			if (!find) {
 				int nx = x + dx[i];
 				int ny = y + dy[i];

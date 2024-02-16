@@ -39,7 +39,6 @@ public class Main {
 
 		archers = new ArrayList<>(); // 궁수의 위치의 조합을 저장할 리스트
 
-		// 성까지 포함하여 n+1행
 		board = new int[n][m];
 
 		for (int i = 0; i < n; i++) {
@@ -54,10 +53,6 @@ public class Main {
 		combination(0, 0);
 
 		for (int i = 0; i < archers.size(); i++) {
-//			for (int j = 0; j < 3; j++) {
-//				System.out.print(archers.get(i)[j] + " ");
-//			}
-//			System.out.println();
 			castleGame(archers.get(i));
 		}
 
@@ -77,6 +72,7 @@ public class Main {
 
 			return;
 		}
+
 		for (int i = start; i < m; i++) {
 			archer[depth] = i;
 			combination(i + 1, depth + 1);
@@ -100,69 +96,71 @@ public class Main {
 		for (int i = 0; i < n; i++) {
 			// 같은 적을 조준할 수 있도록 cut에 저장 후 세 궁수 모두 적 조준 한 후에 삭제하도록 HashSet사용
 			HashSet<List<Integer>> cut = new HashSet<>();
+			// 각각의 궁수에 대하여 bfs를 진행하여 가장 짧으면서 가장 왼쪽에 있는 좌표를 cut에 넣는다.
 			for (int j = 0; j < 3; j++) {
-				bfs(temp, cut, (n - 1) - i, comb[j]);
+				bfs(temp, cut, (n - 1) - i, comb[j]); // 턴이 지남에 따라 병사들이 내려오므로 행의 값을 i만큼 빼준다.
 			}
+			// HashSet에 있는 좌표를 삭제
 			for (List<Integer> list : cut) {
 				int x = list.get(0);
 				int y = list.get(1);
 				temp[x][y] = 0;
-//				System.out.println(x + " " + y);
 			}
-//			System.out.println();
 			count += cut.size();
-//			System.out.println(count);
-//			for(int[] cut)
-//			print(temp);
-//			System.out.println();
 		}
-//		System.out.println("게임끝");
 		answer = Math.max(answer, count);
-		return;
 	}
 
 	private static void bfs(int[][] temp, HashSet<List<Integer>> cut, int x, int y) {
+		// 궁수에서 턴만큼 올린 값에서 바로 위로 출발 ( 좌,우는 가면 안되므로)
 		Queue<int[]> queue = new ArrayDeque<>();
+
 		queue.add(new int[] { x, y, 1 });
+
+		// 해당 좌표에 적이 있으면 HashSet에 넣고 return
 		if (temp[x][y] == 1) {
 			cut.add(Arrays.asList(x, y));
 			return;
 		}
+
 		boolean[][] visited = new boolean[n][m];
+
 		visited[x][y] = true;
+
 		while (!queue.isEmpty()) {
 			int[] cur = queue.poll();
+
+			// 거리를 초과한 경우 return
 			if (cur[2] + 1 > d) {
 				return;
 			}
+
 			for (int k = 0; k < 3; k++) {
 				int nx = cur[0] + dx[k];
+
 				int ny = cur[1] + dy[k];
+
 				int dist = Math.abs(nx - x) + Math.abs(ny - y) + 1;
+
+				// 범위 안에 있을 경우
 				if (isRange(nx, ny)) {
+					// 방문하지 않은 좌표라면
 					if (!visited[nx][ny]) {
 						visited[nx][ny] = true;
+						// 적군이 있고 사정거리 안이라면
 						if (temp[nx][ny] == 1 && dist <= d) {
+							// HashSet에 좌표를 넣는다.
 							cut.add(Arrays.asList(nx, ny));
 							return;
-						} else {
+						}
+						// 적군이 아니라면 지나가야하므로 queue에 좌표와 거리를 넣는다.
+						else {
 							queue.add(new int[] { nx, ny, dist });
 						}
 					}
 				}
 			}
 		}
-	}
-
-	private static void print(int[][] temp) {
-		for (int i = 0; i < temp.length; i++) {
-			for (int j = 0; j < temp[i].length; j++) {
-				System.out.print(temp[i][j] + " ");
-			}
-			System.out.println();
-		}
-//		System.out.println(answer);
-
 	}
 
 	private static boolean isRange(int x, int y) {

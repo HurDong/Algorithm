@@ -67,6 +67,5 @@ public class Main {
 				visited[num] = false;
 			}
 		}
-
 	}
 }

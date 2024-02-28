@@ -6,9 +6,10 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
+	// 팔방 탐색
 	static int[] dx = { -1, 1, 0, 0, -1, -1, 1, 1 };
 	static int[] dy = { 0, 0, -1, 1, -1, 1, -1, 1 };
-	static int w = 1, h = 1, answer = 0;
+	static int w = 1, h = 1, answer = 0; // w와 h를 1로 초기 세팅하여 처음에 while문을 통과하도록
 	static int[][] board;
 	static boolean[][] visited;
 
@@ -49,10 +50,11 @@ public class Main {
 			}
 			sb.append(answer + "\n");
 		}
-		sb.deleteCharAt(sb.length()-2);
+		sb.deleteCharAt(sb.length() - 2); // 마지막 0을 지우기 위한 코드
 		System.out.println(sb.toString());
 	}
 
+	// 일반적인 bfs + 팔방탐색
 	private static void bfs(int x, int y) {
 		Queue<int[]> queue = new ArrayDeque<>();
 

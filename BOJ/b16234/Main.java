@@ -45,9 +45,7 @@ public class Main {
 
 		while (true) {
 			open = new boolean[n][n][4];
-
 			visited = new boolean[n][n];
-
 			// true면 이동 없음
 			if (move()) {
 				break;

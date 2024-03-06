@@ -57,6 +57,7 @@ public class Main {
 					}
 				}
 			}
+			// 이미 탈출 가능한 지점에 위치하였으면 1 반환
 			if (x == 0 || y == 0 || x == w - 1 || y == h - 1)
 				sb.append("1\n");
 			else
@@ -100,7 +101,7 @@ public class Main {
 				int ny = cur[1] + dy[i];
 
 				if (isRange(nx, ny)) {
-
+					// 불이 붙지 않은 빈 바닥에 대하여
 					if (!tempVisited[nx][ny] && board[nx][ny] == '.') {
 
 						tempVisited[nx][ny] = true;
@@ -112,7 +113,7 @@ public class Main {
 				}
 			}
 		}
-
+		// 최소 시간 저장 변수
 		int time = Integer.MAX_VALUE;
 
 		Queue<int[]> queue = new LinkedList<>();
@@ -122,6 +123,7 @@ public class Main {
 		queue.add(new int[] { x, y, 0 }); // 0초 일때 가능한 상근이의 위치
 
 		visited[x][y] = true;
+
 		// 그런 후 상근이의 위치를 옮기면서 초에 해당하는 board가 불에 탔는지 안 탔는지 체크
 		while (!queue.isEmpty()) {
 
@@ -134,9 +136,13 @@ public class Main {
 				int ny = cur[1] + dy[i];
 
 				if (isRange(nx, ny)) {
+					// 해당 시간에 불이 붙지 않은 빈 바닥에 대하여 이동
 					if (!visited[nx][ny] && board[nx][ny] == '.' && temp[nx][ny] > cur[2] + 1) {
+
 						visited[nx][ny] = true;
+
 						queue.add(new int[] { nx, ny, cur[2] + 1 });
+						// 탈출 가능한 빈 바닥에 도착했을 경우 time 최솟값 최신화
 						if (nx == 0 || ny == 0 || nx == w - 1 || ny == h - 1) {
 							time = Math.min(time, cur[2] + 2);
 						}
@@ -144,22 +150,14 @@ public class Main {
 				}
 			}
 		}
-
+		// 만약 탈출이 불가능한 경우
 		if (time == Integer.MAX_VALUE) {
 			sb.append("IMPOSSIBLE\n");
-		} else {
+		}
+		// 탈출을 했을 경우 최소 시간을 StringBuilder에 추가
+		else {
 			sb.append(time + "\n");
 		}
-	}
-
-	private static void print(int[][] temp) {
-		for (int i = 0; i < w; i++) {
-			for (int j = 0; j < h; j++) {
-				System.out.print(temp[i][j] + " ");
-			}
-			System.out.println();
-		}
-		System.out.println();
 	}
 
 	private static boolean isRange(int nx, int ny) {

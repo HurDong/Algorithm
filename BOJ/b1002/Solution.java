@@ -3,7 +3,6 @@ package b1002;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class Solution {
@@ -67,8 +66,21 @@ public class Solution {
 
 	}
 
+//	1
+//	3 10 10
+//	0 0 0 0 0 0 0 0 0 0
+//	1 0 1 0 1 0 0 0 0 0
+//	1 0 3 0 1 1 0 0 0 1
+//	1 1 1 0 1 2 0 0 0 9
+//	1 1 4 0 1 1 0 0 1 1
+//	1 1 4 1 1 1 2 1 1 1
+//	1 1 5 1 1 1 1 2 1 1
+//	1 1 6 1 1 1 1 1 2 1
+//	1 1 1 1 1 1 1 1 1 5
+//	1 1 7 1 1 1 1 1 1 1
 	private static void makePerm(int[] comb, int count, int blocks) {
 		if (count == n) {
+
 //			print(board);
 
 			answer = Math.min(answer, blocks);
@@ -93,7 +105,6 @@ public class Solution {
 			}
 
 			if (isBlock) {
-
 				int[][] temp = new int[h][w];
 
 				// 깊은 복사로 원상 복구할 temp를 저장
@@ -106,7 +117,7 @@ public class Solution {
 				int blockDif = breakBlocks(height, i);
 
 				// 떠 있는 블럭을 아래로 내림
-				for (int j = 0; j < h; j++) {
+				for (int j = 0; j < h - 1; j++) {
 					for (int k = 0; k < w; k++) {
 						if (board[j][k] > 0) {
 							goDown(j, k);
@@ -115,9 +126,15 @@ public class Solution {
 				}
 
 				comb[count] = i;
-
-				makePerm(comb, count, blocks - blockDif);
-				// 완전 탐색으로 정해진 (height,i) 좌표의 블럭을 삭제하면서 연관된 블럭들도 삭제 makePerm(comb, count + 1,
+				if (comb[0] == 2) {
+					for (int l = 0; l < n; l++) {
+						System.out.print(comb[l] + " ");
+					}
+					System.out.println();
+					print(board);
+				}
+				makePerm(comb, count + 1, blocks - blockDif);
+				// 완전 탐색으로 정해진 (height,i) 좌표의 블럭을 삭제하면서 연관된 블럭들도 삭제
 				// blocks - blockDif);
 				board = temp;
 			}
@@ -180,10 +197,7 @@ public class Solution {
 	}
 
 	private static boolean isRange(int x, int y) {
-		if (x >= 0 && y >= 0 && x < h && y < w) {
-			return true;
-		} else {
-			return false;
-		}
+		return x >= 0 && y >= 0 && x < h && y < w;
+
 	}
 }

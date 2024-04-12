@@ -13,9 +13,7 @@ public class Main {
 
 		for (int i = 0; i < n; i++) {
 			String s = br.readLine();
-			Stack<Character> stack = new Stack<>(); // 스택을 이용해서 문자를 저장하고 tail과 짝지어진다면\
-			if (s.length() % 2 == 1)
-				continue;
+			Stack<Character> stack = new Stack<>(); // 스택을 이용해서 문자를 저장하고 tail과 짝지어진다면
 			for (int j = 0; j < s.length(); j++) {
 				char ch = s.charAt(j);
 				// stack에 문자가 남아있으면

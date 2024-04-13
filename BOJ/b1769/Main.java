@@ -1,5 +1,6 @@
 package b1769;
 
+import java.io.Writer;
 import java.util.Scanner;
 
 public class Main {

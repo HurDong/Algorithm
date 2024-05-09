@@ -12,7 +12,7 @@ public class Main {
 
         int n = Integer.parseInt(st.nextToken());
 
-        int m = Integer.parseInt(st.nextToken()); // m번의 인출로 끝내기
+        int m = Integer.parseInt(st.nextToken()); // 정확히 m번의 인출로 끝내기
 
         int[] prices = new int[n];
 
@@ -27,31 +27,29 @@ public class Main {
         }
 
         int answer = end;
-
+        // 이분 탐색 시작
         while (start <= end) {
             int mid = (start + end) / 2;
             int count = 1; // m가 되면 끝
             int money = mid; // 현재 가지고 있는 돈
-            boolean isPossible = true;
             for (int price : prices) {
                 // 현재 돈보다 오늘 지출할 돈이 클 경우
                 if (money < price) {
-                    // 충당을 해도 못 사는 경우
-                    if (mid < price) {
-                        isPossible = false;
-                    } else {
-                        count++;
-                        money = mid - price;
-                    }
-                } else {
-                    money -= price;
+                    // 인출하여 지출
+                    count++;
+                    money = mid - price; // 남은 돈 처리
+                }
+                // 현재 돈으로 지출 가능할 경우
+                else {
+                    money -= price; // 남은 돈 처리
                 }
             }
-            if (isPossible && count <= m) {
+            // 문제 조건에 부합하면 답 비교 후 할당
+            if (count <= m) {
                 answer = Math.min(answer, mid);
-                end = mid - 1;
+                end = mid - 1; // m보다 작거나 같으면 end를 줄여 count를 늘림
             } else {
-                start = mid + 1;
+                start = mid + 1; // m보다 크면 start를 늘려 count를 줄임
             }
         }
         System.out.println(answer);

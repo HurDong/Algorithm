@@ -48,20 +48,17 @@ public class Main {
             }
 
             for (int i = 0; i < 3; i++) {
-                // Flip a row
                 String next = flip(current, i, true);
                 if (!dist.containsKey(next)) {
                     queue.add(next);
                     dist.put(next, currentDist + 1);
                 }
-                // Flip a column
                 next = flip(current, i, false);
                 if (!dist.containsKey(next)) {
                     queue.add(next);
                     dist.put(next, currentDist + 1);
                 }
             }
-            // Flip diagonals
             String next = flipDiagonal(current, true);
             if (!dist.containsKey(next)) {
                 queue.add(next);

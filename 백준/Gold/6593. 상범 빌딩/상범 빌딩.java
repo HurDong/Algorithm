@@ -58,10 +58,11 @@ public class Main {
                         }
                     }
                 }
-                br.readLine();
+                br.readLine(); // 공백 처리
             }
             // bfs
             int answer = bfs();
+            // bfs 후 answer이 0보다 크면 즉, 도착가능한 경우였으면 정답 멘트를 아니라면 Trapped 멘트를 StringBudiler에 저장
             sb.append(answer > 0 ? prefix + " " + answer + " " + suffix : wrong);
         }
         System.out.println(sb.toString());
@@ -69,21 +70,30 @@ public class Main {
 
     private static int bfs() {
         Queue<int[]> queue = new ArrayDeque<>();
-        queue.add(new int[] { startX, startY, startZ, 0 });
+        queue.add(new int[] { startX, startY, startZ, 0 }); // (x,y,z,이동거리) 배열로 저장
+
         boolean[][][] visited = new boolean[L][R][C];
+
         visited[startX][startY][startZ] = true;
+
         while (!queue.isEmpty()) {
             int[] cur = queue.poll();
+            // E를 만나면 거리만큼 반환 후 bfs 종료
             if (cur[0] == endX && cur[1] == endY && cur[2] == endZ) {
                 return cur[3];
             }
             for (int i = 0; i < 6; i++) {
                 int nx = cur[0] + dx[i];
+
                 int ny = cur[1] + dy[i];
+
                 int nz = cur[2] + dz[i];
+
                 if (isRange(nx, ny, nz)) {
+                    // S나 E 모두 .으로 바꿨으므로 bfs 이상 X
                     if (!visited[nx][ny][nz] && buliding[nx][ny][nz] == '.') {
                         queue.add(new int[] { nx, ny, nz, cur[3] + 1 });
+
                         visited[nx][ny][nz] = true;
                     }
                 }

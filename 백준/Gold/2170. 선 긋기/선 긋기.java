@@ -20,9 +20,7 @@ public class Main {
 
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
-            int x = Integer.parseInt(st.nextToken());
-            int y = Integer.parseInt(st.nextToken());
-            lines.add(new Line(x, y));
+            lines.add(new Line(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())));
         }
 
         Collections.sort(lines);
@@ -36,13 +34,9 @@ public class Main {
         for (Line line : lines) {
             int s = line.start;
             int e = line.end;
-            // 긋는 선분이 사이에 있고
+            // 시작점이 선분에 걸치면 max값으로 end를 최신화
             if (s >= start && s <= end) {
-                // 더 확장된다면 end만 최신화
-                if (e > end) {
-                    end = e;
-                }
-                // 아니라면 아무일도..
+                end = Math.max(e, end);
             }
             // 선분 밖에 시작한다면
             else {
@@ -52,7 +46,9 @@ public class Main {
                 end = e;
             }
         }
+        // 마지막 선분 더해주기
         length += end - start;
+
         System.out.println(length);
     }
 }

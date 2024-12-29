@@ -9,7 +9,6 @@ class Solution {
         
         while (right < n) {
             sum += sequence[right];
-            
             // 크면 우로 이동
             while (sum > k && left <= right) {
                 sum -= sequence[left];

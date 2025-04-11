@@ -1,38 +1,45 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        ArrayList<ArrayList<Integer>> tree = new ArrayList<>();
+    static ArrayList<ArrayList<Integer>> tree = new ArrayList<>();
+    static int[] parents;
+    static boolean[] visited;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
         StringBuilder sb = new StringBuilder();
+        int N = Integer.parseInt(st.nextToken());
+        parents = new int[N + 1];
+        visited = new boolean[N + 1];
         for (int i = 0; i <= N; i++) {
             tree.add(new ArrayList<>());
         }
         for (int i = 0; i < N - 1; i++) {
-            int a = sc.nextInt();
-            int b = sc.nextInt();
+            st = new StringTokenizer(br.readLine());
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
             tree.get(a).add(b);
             tree.get(b).add(a);
         }
-        int[] parents = new int[N + 1];
-        boolean[] visited = new boolean[N + 1];
-        visited[1] = true;
-        dfs(1, tree, parents, visited);
+        findParent(1);
         for (int i = 2; i <= N; i++) {
             sb.append(parents[i] + "\n");
         }
-        System.out.print(sb.toString());
-
+        System.out.println(sb.toString());
     }
 
-    public static void dfs(int node, ArrayList<ArrayList<Integer>> tree, int[] parents, boolean[] visited) {
+    private static void findParent(int node) {
+        visited[node] = true;
+        // 모든 tree의 자식 노드에 대해
         for (int child : tree.get(node)) {
             if (!visited[child]) {
-                visited[child] = true;
                 parents[child] = node;
-                dfs(child, tree, parents, visited);
+                findParent(child);
             }
         }
     }

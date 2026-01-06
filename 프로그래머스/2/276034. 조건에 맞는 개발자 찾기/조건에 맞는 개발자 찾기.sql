@@ -1,0 +1,2 @@
+# 비트 연산은 join 조건절에 &를 붙여 합연산한 값을 비교하도록 설정(중복 값 제외를 위한 distinct 설정)
+select distinct d.id, d.email, d.first_name, d.last_name from developers d join skillcodes s on (d.skill_code &s.code) = s.code where s.name = 'C#' or s.name = 'Python' order by d.id asc;

@@ -1,2 +1,1 @@
--- 코드를 입력하세요
-SELECT a.member_name, b.review_text, date_format(b.review_date,'%Y-%m-%d') as review_date from member_profile a join rest_review b on a.member_id = b.member_id where a.member_id = (select member_id from rest_review group by member_id order by count(*) desc limit 1) order by review_date asc, review_text asc; 
+select m.member_name, r.review_text, date_format(r.review_date,'%Y-%m-%d') as review_date from member_profile m join rest_review r on m.member_id = r.member_id where m.member_id in (select member_id from rest_review group by member_id having count(*) = (select max(review_count) from (select count(*) as review_count from rest_review group by member_id) t )) order by r.review_date asc, r.review_text asc; 

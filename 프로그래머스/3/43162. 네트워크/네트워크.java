@@ -1,26 +1,41 @@
 import java.util.*;
 
 class Solution {
-    boolean[] visited;
+    public boolean[] visited;
+    public boolean[] isConnected;
+    public int[][] computers;
+    public int answer;
+    public int n;
     public int solution(int n, int[][] computers) {
-        int answer = 0;
-        visited = new boolean[n];
+        isConnected = new boolean[n];
+        this.computers = computers;
+        this.n = n;
         for(int i=0;i<n;i++)
         {
-            if(!visited[i]){
-                dfs(i,computers);
-                answer++;
-            }
+            if(!isConnected[i]){
+                bfs(i);
+            }   
         }
         return answer;
     }
-    public void dfs(int start, int[][] computers){
+    public void bfs(int start){
+        isConnected[start] = true;
+        Queue<Integer> queue = new ArrayDeque<>();
+        queue.add(start);
+        visited = new boolean[n];
         visited[start] = true;
-        for(int i=0;i<computers.length;i++)
-        {
-            if(!visited[i]&&computers[start][i] ==1){
-                dfs(i,computers);
+        while(!queue.isEmpty()){
+            int cur = queue.poll();
+            for(int i=0;i<n;i++)
+            {
+                if(computers[cur][i]==1 && !visited[i]){
+                    visited[i] = true;
+                    isConnected[i] = true;
+                    queue.add(i);
+                }
             }
         }
+        answer++;
+        return;
     }
 }
